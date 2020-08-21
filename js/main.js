@@ -28,8 +28,8 @@ function getResult() {
     var rightSide = 120;
     var canvasWidth = 900;
     var canvasHeight = 420;
-    var risk = $("#risk .ui-selected").text();
-    var segment = parseInt($("#segment .ui-selected").text());
+    var risk = $($("#risk .ui-selected")[0]).text();
+    var segment = parseInt($($("#segment .ui-selected")[0]).text());
     var ctx = createCanvas($(parent), canvasWidth, canvasHeight, "#f8f8f8", true);
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "#999";
