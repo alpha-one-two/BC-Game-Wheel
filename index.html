@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/sha256.min.js"></script>
+    <script type="text/javascript" src="js/sha512.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 50px;
+        }
+        div{
+            margin-top: 10px;
+        }
+        .button{
+            padding: 10px;
+            display: block;
+            margin:10px 0 10px 0;
+            border: solid 1px #ccc;
+            outline:none;
+        }
+        .button:active{
+            background: #99bbcc;
+        }
+        .label{
+            min-width: 120px;
+            display: inline-block;
+        }
+        .long{
+            height: 33px;
+            width: 600px;
+        }
+        .short{
+            height: 33px;
+            width: 200px;
+        }
+        #risk ,#segment{
+    		display: inline-block;
+        	list-style-type: none;
+    		padding: 0px;
+        	margin: unset;
+            outline:none;
+        }
+        #risk .ui-selected, #segment .ui-selected{
+    		background: lightblue;
+        }
+        #risk li, #segment li{
+    		display: inline-block;
+		    background: #efefef;
+		    min-width: 100px;
+		    user-select: none;
+		    padding:10px 0 10px 0;
+		    border: solid 1px #ccc;
+		    cursor: pointer;
+    		text-align: center;
+        }
+        </style>
+    <title>Verification of Wheel</title>
+</head>
+
+<body>
+    <form>
+        <div>
+            <span class="label">Server Seed</span>
+            <input id="serverSeed" class="long" type="text" value="353af7b5892839f4b57dfdc09f8ff833f49f9789bd7f06ef30adca19dae3d194" />
+        </div>
+        <div>
+            <span class="label">Client Seed</span>
+            <input id="clientSeed" class="long" type="text" value="kXGdl8g6sPkIqiCOrs8goAgcdrYStYXx" />
+        </div>
+        <div>
+            <span class="label">Game Id</span>
+            <input id="gameId" class="short" type="text" value="154" />
+        </div>
+        <div>
+            <span class="label">Risk</span>
+            <ul id="risk">
+                <li class="ui-selected">Low</li>
+                <li>Medium</li>
+                <li>High</li>
+            </ul>
+        </div>
+        <div>
+            <span class="label">Segment</span>
+            <ul id="segment">
+                <li class="ui-selected">10</li>
+                <li>20</li>
+                <li>30</li>
+                <li>40</li>
+                <li>50</li>
+            </ul>
+        </div>
+    </form>
+    <div>
+        <h1>Validation results</h1>
+        <div id="placeholder1">
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+$('form').keyup(getResult).keyup();
+</script>
