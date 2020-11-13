@@ -34,12 +34,13 @@ function getResult() {
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "#999";
     var x = 10;
-    drawWrapText(ctx, "Use SHA256 to calculate the hash value after combining Server Seed, Client Seed, Game Id.  Sha256(Server_Seed+Client_Seed+Game_Id)", x, 800, lineHeight * 1, null, "  ");
+    drawWrapText(ctx, "Use HMAC_SHA256 to calculate the hash value after combining Client Seed, Nonce,  And use Server Seed as the key.  HMAC_Sha256 ( Client_Seed : Nonce , Server_Seed )", x, 700, lineHeight * 1, null, "  ");
     drawWrapText(ctx, "Take out the first 8 characters of the hash, and divide every 2 characters", x, 150, lineHeight * 4);
     drawWrapText(ctx, "Convert  hexadecimal  to decimal", 160, 250, lineHeight * 5.6, null, "  ");
     drawWrapText(ctx, "Separate calculation", 290, canvasWidth, lineHeight * 6.8);
     drawWrapText(ctx, "Add up the result,  multiply it by " + segment + ",  and round to an integer", 510, 630, lineHeight * 5.6, null, "  ");
-    var hash = sha256(serverSeed + clientSeed + gameId);
+    var hash = CryptoJS.HmacSHA256(clientSeed+":"+gameId, serverSeed).toString();
+    //var hash = sha256(serverSeed + clientSeed + gameId);
     var firstEightChar = hash.substr(0, 8);
     ctx.font = "16px sans-serif";
     ctx.fillStyle = "#000";
